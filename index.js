@@ -8,6 +8,13 @@ import moviesRouter from './api/movies';
 import bodyParser from 'body-parser';
 import usersRouter from './api/users';
 import genresRouter from './api/genres';
+import loglevel from 'loglevel';
+
+if (process.env.NODE_ENV === 'test') {
+  loglevel.setLevel('warn')
+ } else {
+  loglevel.setLevel('info')
+ }
 
 dotenv.config();
 
@@ -44,11 +51,14 @@ app.use('/api/genres', genresRouter);
 app.use('/api/users', usersRouter);
 
 app.use(errHandler);
-app.listen(port, () => {
-  console.info(`Server running at ${port}`);
+
+const server = app.listen(port, () => {
+  loglevel.info(`Server running at ${port}`);
 });
 
 if (process.env.SEED_DB) {
   loadUsers();
   loadMovies();
 }
+
+module.exports = server;
