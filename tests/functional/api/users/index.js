@@ -56,7 +56,7 @@ describe("Users endpoint", () => {
         .get("/api/users")
         .set("Accept", "application/json")
         .set("Authorization", "Bearer" + token)
-        .expect("Content-Type", /json/)
+        // .expect("Content-Type", /json/)
         .expect(200)
         .end((err, res) => {
           expect(res.body).to.be.a("array");

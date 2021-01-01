@@ -59,19 +59,19 @@ describe("Movies endpoint", () => {
       });
     });
 
-    // describe("when the id is valid but do not have anthorization", () => {
-    //   it("should not return something", (done) => {
-    //     request(api)
-    //       .get(`/api/movies/${sampleMovie.id}`)
-    //       .set("Accept", "application/json")
-    //       .set("Authorization", "Bearer " + token)
-    //       .expect(401)
-    //       .then((res) => {
-    //         expect(res.body).to.be.empty;
-    //         done();
-    //       });
-    //   });
-    // });
+    describe("when the id is valid but do not have anthorization", () => {
+      it("should not return something", () => {
+        request(api)
+          .get(`/api/movies/${sampleMovie.id}`)
+          .set("Accept", "application/json")
+          .set("Authorization", "Bearer " + token)
+          .expect(401)
+          .then((res) => {
+            expect(res.body).to.be.empty;
+            
+          });
+      });
+    });
 
 
     describe("when the id is invalid", () => {
