@@ -62,7 +62,6 @@ describe("Movies endpoint", () => {
         request(api)
           .get(`/api/movies/${sampleMovie.id}`)
           .set("Accept", "application/json")
-          .set("Authorization", "Bearer " + token)
           .expect(401)
           .then((res) => {
             expect(res.body).to.be.empty;
@@ -78,7 +77,7 @@ describe("Movies endpoint", () => {
           .get("/api/movies/xxx")
           .set("Accept", "application/json")
           .set("Authorization", "Bearer" + token)
-          .expect(401);
+          .expect(500);
           done();
       });
     });
@@ -135,4 +134,42 @@ describe("PUT /movies/:id", () => {
           done();
     });
   });
+});
+
+
+describe("Delete /movies/:id", () => {
+  describe("when the id is valid", () => {
+    it("should return a 200 status and confirmation message", (done) => {
+      request(api)
+        .delete(`/api/movies/${sampleMovie.id}`)
+        .set("Accept", "application/json")
+        .set("Authorization", "Bearer " + token)
+        .expect(200)
+        .expect({
+          message: `Deleted movie id: ${sampleMovie.id}.`,
+          status: 200,
+        });
+        done();
+    });
+    after(() => {
+      request(api)
+        .get(`/api/movies/${sampleMovie.id}`)
+        .set("Authorization", "Bearer " + token)
+        .expect(404)
+        .expect({
+          message: `Unable to find movie with id: ${sampleMovie.id}.`,
+          status: 404,
+        });
+    });
+  });
+  describe("when the id is invalid", () => {
+    it("should with the message: 'Unable to find Movie", () => {
+      request(api)
+        .delete("/api/movies/9999")
+        .set("Accept", "application/json")
+        .set("Authorization", "Bearer " + token)
+        .expect(404);
+      
+  });
+});
 });
