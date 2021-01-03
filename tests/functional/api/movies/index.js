@@ -84,3 +84,27 @@ describe("Movies endpoint", () => {
     });
   });
 });
+
+
+
+describe("POST /movies ", () => {
+  it("should return a 201 status and the newly added movie", (done) => {
+    request(api)
+      .post("/api/movies")
+      .send(sampleMovie)
+      .expect(201)
+      .end((res) => {
+        console.log(res.body);
+        done();
+      });
+  });
+
+  after(() => {
+    request(api)
+      .get(`/api/movies/${sampleMovie.id}`)
+      .expect(200)
+      .then((res) => {
+        expect(res.body).to.have.property("title", sampleMovie.title);
+      });
+  });
+}); // end-POST
