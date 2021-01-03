@@ -102,9 +102,37 @@ describe("POST /movies ", () => {
   after(() => {
     request(api)
       .get(`/api/movies/${sampleMovie.id}`)
+      .set("Authorization", "Bearer " + token)
       .expect(200)
       .then((res) => {
         expect(res.body).to.have.property("title", sampleMovie.title);
       });
   });
 }); // end-POST
+
+
+describe("PUT /movies/:id", () => {
+  describe("when a 200 status", () => {
+    it("should return with a copy of the updated movie", (done) => {
+      request(api)
+        .put(`/api/movies/${sampleMovie.id}`)
+        .set("Authorization", "Bearer " + token)
+        .send(sampleMovie)
+        .expect(200)
+        .end((res) => {
+          console.log(res.body);
+          done();
+        });
+    });
+  });
+  describe("when a 404 status", () => {
+    it("should with the message: 'Unable to find Movie", (done) => {
+      request(api)
+        .put("/api/movies/9999")
+        .set("Accept", "application/json")
+        .set("Authorization", "Bearer " + token)
+        .expect(404);
+          done();
+    });
+  });
+});
