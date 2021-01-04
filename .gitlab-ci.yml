@@ -67,6 +67,8 @@ Continuous_Delivery:
   script:
     - dpl --provider=heroku --app=$HEROKU_APP_NAME_STAGING --api-key=$HEROKU_API_KEY
     - echo "Deployed to production server"
+  when: manual 
+
 
 
 Continuous_Deployment:
