@@ -11,6 +11,7 @@ const sampleMovie = {
   title: "Mulan",
 };
 
+
 describe("Movies endpoint", () => {
   beforeEach(function (done) {
     try {
