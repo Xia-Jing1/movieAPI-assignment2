@@ -2,9 +2,11 @@ import userModel from '../api/users/userModel';
 import movieModel from '../api/movies/movieModel';
 import upcomingModel from '../api/upcomingMovies/upcomingModel';
 import popularModel from '../api/popularMovies/popularModel';
+import topratedModel from '../api/topratedMovies/topratedModel';
 import {movies} from './movies.js';
 import {upcomingMovies} from './upcoming.js';
 import {popularMovies} from './popular.js';
+import {topratedMovies} from './toprated.js';
 
 const users = [
   {
@@ -64,5 +66,18 @@ export async function loadPopularMovies() {
     console.info(`${popularMovies.length} Popular Movies were successfully stored.`);
 } catch (err) {
     console.error(`failed to Load popular movie Data: ${err}`);
+  }
+}
+
+
+export async function loadTopratedMovies() {
+  console.log('load toprated movies data');
+  console.log(topratedMovies.length);
+  try {
+    await topratedModel.deleteMany();
+    await topratedModel.collection.insertMany(topratedMovies);
+    console.info(`${topratedMovies.length} Toprated Movies were successfully stored.`);
+} catch (err) {
+    console.error(`failed to Load toprated movie Data: ${err}`);
   }
 }
