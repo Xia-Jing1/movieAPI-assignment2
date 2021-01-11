@@ -1,6 +1,8 @@
 import userModel from '../api/users/userModel';
 import movieModel from '../api/movies/movieModel';
+import upcomingModel from '../api/upcomingMovies/upcomingModel';
 import {movies} from './movies.js';
+import {upcomingMovies} from './upcoming.js';
 
 const users = [
   {
@@ -37,3 +39,15 @@ export async function loadMovies() {
     console.error(`failed to Load movie Data: ${err}`);
   }
 }  
+
+export async function loadUpcomingMovies() {
+  console.log('load upcoming movies data');
+  console.log(upcomingMovies.length);
+  try {
+    await upcomingModel.deleteMany();
+    await upcomingModel.collection.insertMany(upcomingMovies);
+    console.info(`${upcomingMovies.length} Upcoming Movies were successfully stored.`);
+} catch (err) {
+    console.error(`failed to Load upcoming movie Data: ${err}`);
+  }
+}

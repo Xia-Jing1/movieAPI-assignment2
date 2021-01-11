@@ -1,10 +1,12 @@
 import session from 'express-session';
 import passport from './authenticate';
-import {loadUsers, loadMovies} from './seedData';
+import {loadUsers, loadMovies, loadUpcomingMovies} from './seedData';
 import './db';
 import dotenv from 'dotenv';
 import express from 'express';
 import moviesRouter from './api/movies';
+import upcomingRouter from './api/upcomingMovies';
+
 import bodyParser from 'body-parser';
 import usersRouter from './api/users';
 import genresRouter from './api/genres';
@@ -47,6 +49,7 @@ app.use(bodyParser.urlencoded());
 app.use(express.static('public'));
 // Add passport.authenticate(..)  to middleware stack for protected routes​
 app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
+app.use('/api/upcoming',passport.authenticate('jwt', {session: false}),upcomingRouter);
 app.use('/api/genres', genresRouter);
 app.use('/api/users', usersRouter);
 
@@ -59,6 +62,7 @@ const server = app.listen(port, () => {
 if (process.env.SEED_DB) {
   loadUsers();
   loadMovies();
+  loadUpcomingMovies();
 }
 
 module.exports = server;
