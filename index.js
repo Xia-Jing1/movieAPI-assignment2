@@ -1,6 +1,6 @@
 import session from 'express-session';
 import passport from './authenticate';
-import {loadUsers, loadMovies, loadUpcomingMovies, loadPopularMovies, loadTopratedMovies, loadLatestMovies} from './seedData';
+import {loadUsers, loadMovies, loadUpcomingMovies, loadPopularMovies, loadTopratedMovies, loadLatestMovies, loadNowplayingMovies} from './seedData';
 import './db';
 import dotenv from 'dotenv';
 import express from 'express';
@@ -9,6 +9,7 @@ import upcomingRouter from './api/upcomingMovies';
 import popularRouter from './api/popularMovies';
 import topratedRouter from './api/topratedMovies';
 import latestRouter from './api/latestMovies';
+import nowplayingRouter from './api/nowplayingMovies';
 
 import bodyParser from 'body-parser';
 import usersRouter from './api/users';
@@ -56,6 +57,7 @@ app.use('/api/upcoming',passport.authenticate('jwt', {session: false}),upcomingR
 app.use('/api/popular',passport.authenticate('jwt', {session: false}),popularRouter);
 app.use('/api/toprated',passport.authenticate('jwt', {session: false}),topratedRouter);
 app.use('/api/latest',passport.authenticate('jwt', {session: false}),latestRouter);
+app.use('/api/nowplaying',passport.authenticate('jwt', {session: false}),nowplayingRouter);
 app.use('/api/genres', genresRouter);
 app.use('/api/users', usersRouter);
 
@@ -72,6 +74,7 @@ if (process.env.SEED_DB) {
   loadPopularMovies();
   loadTopratedMovies();
   loadLatestMovies();
+  loadNowplayingMovies();
 }
 
 module.exports = server;

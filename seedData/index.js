@@ -4,11 +4,13 @@ import upcomingModel from '../api/upcomingMovies/upcomingModel';
 import popularModel from '../api/popularMovies/popularModel';
 import topratedModel from '../api/topratedMovies/topratedModel';
 import latestModel from '../api/latestMovies/latestModel';
+import nowplayingModel from '../api/nowplayingMovies/nowplayingModel';
 import {movies} from './movies.js';
 import {upcomingMovies} from './upcoming.js';
 import {popularMovies} from './popular.js';
 import {topratedMovies} from './toprated.js';
 import {latestMovies} from './latest.js';
+import {nowplayingMovies} from './nowplaying.js';
 
 const users = [
   {
@@ -94,5 +96,18 @@ export async function loadLatestMovies() {
     console.info(`${latestMovies.length} Latest Movies were successfully stored.`);
 } catch (err) {
     console.error(`failed to Load latest movie Data: ${err}`);
+  }
+}
+
+
+export async function loadNowplayingMovies() {
+  console.log('load nowplaying movies data');
+  console.log(nowplayingMovies.length);
+  try {
+    await nowplayingModel.deleteMany();
+    await nowplayingModel.collection.insertMany(nowplayingMovies);
+    console.info(`${nowplayingMovies.length} Nowplaying Movies were successfully stored.`);
+} catch (err) {
+    console.error(`failed to Load nowplaying movie Data: ${err}`);
   }
 }
