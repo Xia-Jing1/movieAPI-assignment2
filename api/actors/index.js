@@ -1,8 +1,8 @@
 import actorModel from './actorModel';
 import express from 'express';
-import {
-  getPeople
-} from '../tmdb-api';
+// import {
+//   getPeople
+// } from '../tmdb-api';
 
 const router = express.Router();
 

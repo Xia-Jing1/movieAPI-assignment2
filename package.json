@@ -11,6 +11,13 @@
     "compile:authenticate": "babel ./authenticate --out-dir build/authenticate",
     "compile:tmdb-api": "babel ./api --out-dir build/api",
     "compile:moviemodels": "babel ./api/movies --out-dir build/api/movies",
+    "compile:upcomingmodels": "babel ./api/upcoming --out-dir build/api/upcoming",
+    "compile:popularmodels": "babel ./api/popular --out-dir build/api/popular",
+    "compile:topratedmodels": "babel ./api/toprated --out-dir build/api/toprated",
+    "compile:latestmodels": "babel ./api/latest --out-dir build/api/latest",
+    "compile:nowplayingmodels": "babel ./api/nowplaying --out-dir build/api/nowplaying",
+    "compile:actorsmodels": "babel ./api/actors --out-dir build/api/actors",
+
     "compile:usermodels": "babel ./api/users --out-dir build/api/users",
     "compile:models": "npm-run-all compile:moviemodels compile:usermodels",
     "compile:seed": "babel ./seedData --out-dir build/seedData",

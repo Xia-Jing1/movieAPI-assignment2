@@ -53,13 +53,13 @@ app.use(bodyParser.urlencoded());
 
 app.use(express.static('public'));
 // Add passport.authenticate(..)  to middleware stack for protected routes​
-app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
-app.use('/api/upcoming',passport.authenticate('jwt', {session: false}),upcomingRouter);
-app.use('/api/popular',passport.authenticate('jwt', {session: false}),popularRouter);
-app.use('/api/toprated',passport.authenticate('jwt', {session: false}),topratedRouter);
-app.use('/api/latest',passport.authenticate('jwt', {session: false}),latestRouter);
-app.use('/api/nowplaying',passport.authenticate('jwt', {session: false}),nowplayingRouter);
-app.use('/api/actors',passport.authenticate('jwt', {session: false}),actorsRouter);
+app.use('/api/movies',  moviesRouter);
+app.use('/api/upcoming',upcomingRouter);
+app.use('/api/popular',popularRouter);
+app.use('/api/toprated',topratedRouter);
+app.use('/api/latest',latestRouter);
+app.use('/api/nowplaying',nowplayingRouter);
+app.use('/api/actors',actorsRouter);
 app.use('/api/genres', genresRouter);
 app.use('/api/users', usersRouter);
 
