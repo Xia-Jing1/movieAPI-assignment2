@@ -9,7 +9,7 @@ const Schema = mongoose.Schema;
 // });
 
 const UserSchema = new Schema({
-  username: { type: String, unique: true, required: true},
+  username: { type: String, unique: true, required: true, default:new Date()},
   password: {type: String, required: true },
   favourites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Movies'}]
 });
