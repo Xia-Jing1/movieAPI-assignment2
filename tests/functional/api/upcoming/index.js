@@ -41,6 +41,20 @@ describe("upcomingMovies endpoint", () => {
           done();
         });
     });
+
+//not have anthorization
+    it("should not return 20 upcoming movies because do not have anthorization", () => {
+      request(api)
+       .get("/api/upcoming")
+       .set("Accept", "application/json")
+       .expect(401)
+          .then((res) => {
+            expect(res.body).to.be.empty;
+          });
+   });
+
+
+
   });
 
   describe("GET /upcomingmovies/:id", () => {
@@ -109,6 +123,30 @@ describe("POST /upcomingmovies ", () => {
         expect(res.body).to.have.property("title", sampleMovie.title);
       });
   });
+
+
+//not have anthorization
+  it("should return a 401 status because do not have anthorization", (done) => {
+    request(api)
+      .post("/api/upcoming")
+      .send(sampleMovie)
+      .expect(201)
+      .end((res) => {
+        console.log(res.body);
+        done();
+      });
+  });
+
+  after(() => {
+    request(api)
+      .get(`/api/upcoming/${sampleMovie.id}`)
+      .expect(401)
+      .then((res) => {
+        expect(res.body).to.be.empty;
+      });
+  });
+
+
 }); // end-POST
 
 
@@ -136,6 +174,20 @@ describe("PUT /upcomingmovies/:id", () => {
           done();
     });
   });
+
+
+  //not have anthorization
+describe("when a 401 status", () => {
+  it("should do not have anthorization", () => {
+    request(api)
+      .put(`/api/upcoming/${sampleMovie.id}`)
+      .send(sampleMovie)
+      .expect(401)
+        .then((res) => {
+          expect(res.body).to.be.empty;
+        });
+  });
+});
 });
 
 
@@ -155,7 +207,7 @@ describe("Delete /upcomingmovies/:id", () => {
     });
     after(() => {
       request(api)
-        .get(`/api/upcomingmovies/${sampleMovie.id}`)
+        .get(`/api/upcoming/${sampleMovie.id}`)
         .set("Authorization", "Bearer " + token)
         .expect(404)
         .expect({
@@ -164,6 +216,23 @@ describe("Delete /upcomingmovies/:id", () => {
         });
     });
   });
+
+
+//not have anthorization
+describe("when the id is valid but do not have anthorization", () => {
+  it("should not return something", () => {
+    request(api)
+      .delete(`/api/upcoming/${sampleMovie.id}`)
+      .set("Accept", "application/json")
+      .expect(401)
+      .then((res) => {
+        expect(res.body).to.be.empty;
+        
+      });
+  });
+});
+
+
   describe("when the id is invalid", () => {
     it("should with the message: 'Unable to find upcoming Movie", () => {
       request(api)

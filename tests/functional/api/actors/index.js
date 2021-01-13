@@ -41,6 +41,19 @@ describe("actors endpoint", () => {
           done();
         });
     });
+
+//not have anthorization
+it("should not return any actor because do not have anthorization", () => {
+  request(api)
+   .get("/api/actors")
+   .set("Accept", "application/json")
+   .expect(401)
+      .then((res) => {
+        expect(res.body).to.be.empty;
+      });
+});
+
+
   });
 
   describe("GET /actors/:id", () => {
@@ -114,6 +127,29 @@ describe("POST /actors ", () => {
         expect(res.body).to.have.property("name", samplePeople.name);
       });
   });
+
+
+
+  //not have anthorization
+  it("should return a 401 status because do not have anthorization", (done) => {
+    request(api)
+      .post("/api/actors")
+      .send(samplePeople)
+      .expect(201)
+      .end((res) => {
+        console.log(res.body);
+        done();
+      });
+  });
+
+  after(() => {
+    request(api)
+      .get(`/api/actors/${samplePeople.id}`)
+      .expect(401)
+      .then((res) => {
+        expect(res.body).to.be.empty;
+      });
+  });
 }); // end-POST
 
 
@@ -139,6 +175,19 @@ describe("PUT /actors/:id", () => {
         .set("Authorization", "Bearer " + token)
         .expect(404);
           done();
+    });
+  });
+
+//not have anthorization
+  describe("when a 401 status", () => {
+    it("should do not have anthorization", () => {
+      request(api)
+        .put(`/api/actors/${samplePeople.id}`)
+        .send(samplePeople)
+        .expect(401)
+          .then((res) => {
+            expect(res.body).to.be.empty;
+          });
     });
   });
 });
@@ -169,6 +218,23 @@ describe("Delete /actors/:id", () => {
         });
     });
   });
+
+//not have anthorization
+describe("when the id is valid but do not have anthorization", () => {
+  it("should not return something", () => {
+    request(api)
+      .delete(`/api/actors/${samplePeople.id}`)
+      .set("Accept", "application/json")
+      .expect(401)
+      .then((res) => {
+        expect(res.body).to.be.empty;
+        
+      });
+  });
+});
+
+
+
   describe("when the id is invalid", () => {
     it("should with the message: 'Unable to find latest People", () => {
       request(api)

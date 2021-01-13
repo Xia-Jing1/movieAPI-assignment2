@@ -41,6 +41,20 @@ describe("topratedMovies endpoint", () => {
           done();
         });
     });
+
+
+//not have anthorization
+it("should not return 20 toprated movies because do not have anthorization", () => {
+  request(api)
+   .get("/api/toprated")
+   .set("Accept", "application/json")
+   .expect(401)
+      .then((res) => {
+        expect(res.body).to.be.empty;
+      });
+});
+
+
   });
 
   describe("GET /topratedmovies/:id", () => {
@@ -109,6 +123,32 @@ describe("POST /topratedmovies ", () => {
         expect(res.body).to.have.property("title", sampleMovie.title);
       });
   });
+
+
+//not have anthorization
+it("should return a 401 status because do not have anthorization", (done) => {
+  request(api)
+    .post("/api/toprated")
+    .send(sampleMovie)
+    .expect(201)
+    .end((res) => {
+      console.log(res.body);
+      done();
+    });
+});
+
+after(() => {
+  request(api)
+    .get(`/api/toprated/${sampleMovie.id}`)
+    .expect(401)
+    .then((res) => {
+      expect(res.body).to.be.empty;
+    });
+});
+
+
+
+
 }); // end-POST
 
 
@@ -136,6 +176,20 @@ describe("PUT /topratedmovies/:id", () => {
           done();
     });
   });
+
+
+  //not have anthorization
+describe("when a 401 status", () => {
+  it("should do not have anthorization", () => {
+    request(api)
+      .put(`/api/toprated/${sampleMovie.id}`)
+      .send(sampleMovie)
+      .expect(401)
+        .then((res) => {
+          expect(res.body).to.be.empty;
+        });
+  });
+});
 });
 
 
@@ -155,7 +209,7 @@ describe("Delete /topratedmovies/:id", () => {
     });
     after(() => {
       request(api)
-        .get(`/api/topratedmovies/${sampleMovie.id}`)
+        .get(`/api/toprated/${sampleMovie.id}`)
         .set("Authorization", "Bearer " + token)
         .expect(404)
         .expect({
@@ -164,6 +218,21 @@ describe("Delete /topratedmovies/:id", () => {
         });
     });
   });
+
+//not have anthorization
+describe("when the id is valid but do not have anthorization", () => {
+  it("should not return something", () => {
+    request(api)
+      .delete(`/api/toprated/${sampleMovie.id}`)
+      .set("Accept", "application/json")
+      .expect(401)
+      .then((res) => {
+        expect(res.body).to.be.empty;
+        
+      });
+  });
+});
+
   describe("when the id is invalid", () => {
     it("should with the message: 'Unable to find toprated Movie", () => {
       request(api)
