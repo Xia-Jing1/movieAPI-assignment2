@@ -14,10 +14,11 @@ const UserSchema = new Schema({
   favourites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Movies'}]
 });
 
-UserSchema.path('password').validate((password) => {
-  let pass = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
-  return pass.test(password);
-  });
+// UserSchema.path('password').validate((password) => {
+//   let pass = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
+//   return pass.test(password);
+//   });
+
 
 UserSchema.statics.findByUserName = function (username) {
   return this.findOne({ username: username });

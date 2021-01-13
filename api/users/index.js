@@ -21,11 +21,14 @@ router.post('/', async (req, res, next) => {
     });
   }
   if (req.query.action === 'register') {
+    let pass = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
+    var result=pass.test(req.body.password);
+    if(result){
     await User.create(req.body).catch(next);
     res.status(201).json({
       code: 201,
       msg: 'Successful created new user.',
-    });
+    });}
   } else {
     const user = await User.findByUserName(req.body.username).catch(next);
       if (!user) return res.status(401).json({ code: 401, msg: 'Authentication failed. User not found.' });
