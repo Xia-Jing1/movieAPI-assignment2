@@ -2,6 +2,7 @@ file:
     - 'tests/functional/api/movies/index.js'
     - 'tests/functional/api/users/index.js'
     - 'tests/functional/api/upcoming/index.js'
+    - 'tests/functional/api/popular/index.js'
 require: '@babel/register'
 exit: true
 timeout: 7000
