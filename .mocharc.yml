@@ -5,6 +5,7 @@ file:
     - 'tests/functional/api/popular/index.js'
     - 'tests/functional/api/toprated/index.js'
     - 'tests/functional/api/latest/index.js'
+    - 'tests/functional/api/nowplaying/index.js'
 require: '@babel/register'
 exit: true
 timeout: 7000
