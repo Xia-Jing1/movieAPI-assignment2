@@ -20,6 +20,14 @@ const users = [
   },
 ];
 
+const newusers = [
+  {
+    username: "user0",
+    password: "12345",
+  },
+];
+
+
 describe("Users endpoint", () => {
   before(() => {
     mongoose.connect(process.env.mongoDB, {
@@ -68,7 +76,22 @@ describe("Users endpoint", () => {
     });
   });
 
-  describe("POST / ", () => {
+  describe("post/users?action=register", () => {
+    it('should return 201 when register a new user', async(done) => {
+       request(api)
+       .post("/api/users?action=register")
+      .send(newusers)
+      .expect(201)
+      .then((res) => {
+        expect(res.body.msg).to.equal("Successful created a new user");
+      });
+    done();
+    });
+  });
+
+
+
+  describe("POST /users", () => {
     it("should return a 200 status and the confirmation message", (done) => {
        request(api)
         .post("/api/users")
