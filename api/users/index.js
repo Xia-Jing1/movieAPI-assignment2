@@ -90,34 +90,21 @@ router.get('/:userName/favourites', (req, res, next) => {
 });
 
 
-
-//Add a watchlist. 
-router.post('/:userName/watchlist', async (req, res, next) => {
-  const newWatchList = req.body.id;
+//delete a favourite.
+router.delete('/:userName/favourites',  async (req, res, next) => {
+  const id = req.body.id;
   const userName = req.params.userName;
-  const movie = await movieModel.findByMovieDBId(newWatchList);
+  const movie = await movieModel.findByMovieDBId(id).catch(next);
   const user = await User.findByUserName(userName);
-  try{
-    if(user.watchlist.indexOf(movie._id) === -1) {
-        await user.watchlist.push(movie._id);
-        await user.save();
-      }
-      res.status(201).json(user);}
-     
-        catch (error) {
-          return next(error);
-       // console.error(`invalid`);
-        
-      }
-    });
-
-router.get('/:userName/watchlist', (req, res, next) => {
-  const userName = req.params.userName;
-  User.findByUserName(userName).populate('watchlist').then(
-    user => res.status(201).json(user.watchlist)
-  ).catch(next);
-});
-
+  const index = user.favourites.indexOf(movie._id);
+  if (index > -1) {
+    user.favourites.splice(index, 1);
+    await user.save(); 
+    res.status(200).send({message: `Deleted movie id: ${id}.`,status: 200});
+  }else{
+    res.status(404).send({message: `Unable to find movie with id: ${id}.`, status: 404});
+  }
+  });
 
 
   
