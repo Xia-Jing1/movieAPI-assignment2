@@ -328,6 +328,7 @@ See tests/functional/api/movies/index.js
 + Put /api/movies/:id - test update a specific movie with invalid id. 
 + Put /api/movies/:id - test update a specific movie without anthorization. 
 + Delete /api/movies/:id - delete a specific movie without anthorization. 
++ Delete /api/movies/:id - delete a specific movie with invaild id. 
 
 See tests/functional/api/upcoming/index.js 
 
@@ -338,6 +339,7 @@ See tests/functional/api/upcoming/index.js
 + Put /api/upcoming/:id - test update a specific upcoming movie with invalid id. 
 + Put /api/upcoming/:id - test update a specific upcoming movie without anthorization. 
 + Delete /api/upcoming/:id - delete a specific upcoming movie without anthorization. 
++ Delete /api/upcoming/:id - delete a specific upcoming movie with invaild id. 
 
 See tests/functional/api/toprated/index.js 
 
@@ -348,6 +350,7 @@ See tests/functional/api/toprated/index.js
 + Put /api/toprated/:id - test update a specific toprated movie with invalid id. 
 + Put /api/toprated/:id - test update a specific toprated movie without anthorization. 
 + Delete /api/toprated/:id - delete a specific toprated movie without anthorization. 
++ Delete /api/toprated/:id - delete a specific toprated movie with invaild id. 
 
 See tests/functional/api/popular/index.js 
 
@@ -358,6 +361,7 @@ See tests/functional/api/popular/index.js
 + Put /api/popular/:id - test update a specific popular movie with invalid id. 
 + Put /api/popular/:id - test update a specific popular movie without anthorization. 
 + Delete /api/popular/:id - delete a specific popular movie without anthorization. 
++ Delete /api/popular/:id - delete a specific popular movie with invaild id. 
 
 See tests/functional/api/nowplaying/index.js 
 
@@ -368,6 +372,7 @@ See tests/functional/api/nowplaying/index.js
 + Put /api/nowplaying/:id - test update a specific nowplaying movie with invalid id.
 + Put /api/nowplaying/:id - test update a specific nowplaying movie without anthorization. 
 + Delete /api/nowplaying/:id - delete a specific nowplaying movie without anthorization. 
++ Delete /api/nowplaying/:id - delete a specific nowplaying movie with invaild id. 
 
 See tests/functional/api/latest/index.js 
 
@@ -378,6 +383,7 @@ See tests/functional/api/latest/index.js
 + Put /api/latest/:id - test update a specific latest movie with invalid id. 
 + Put /api/latest/:id - test update a specific latest movie without anthorization. 
 + Delete /api/latest/:id - delete a specific latest movie without anthorization. 
++ Delete /api/latest/:id - delete a specific latest movie with invaild id. 
 
 See tests/functional/api/actors/index.js 
 
@@ -388,6 +394,7 @@ See tests/functional/api/actors/index.js
 + Put /api/actors/:id - test update a specific actor with invalid id. 
 + Put /api/actors/:id - test update a specific actor without anthorization. 
 + Delete /api/actors/:id - delete a specific actor without anthorization. 
++ Delete /apiactor/:id - delete a specific actor with invaild id. 
 
 See tests/functional/api/favourite/index.js
 

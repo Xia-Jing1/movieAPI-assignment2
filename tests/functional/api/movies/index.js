@@ -83,7 +83,7 @@ it("should not return 20 movies because do not have anthorization", () => {
       });
     });
 
-
+//invaild id
     describe("when the id is invalid", () => {
       it("should return the NOT found message", (done) => {
        request(api)
@@ -161,6 +161,7 @@ describe("PUT /movies/:id", () => {
         });
     });
   });
+  //invaild id
   describe("when a 404 status", () => {
     it("should with the message: 'Unable to find Movie", (done) => {
       request(api)
@@ -227,7 +228,7 @@ describe("when the id is valid but do not have anthorization", () => {
       });
   });
 });
-
+//invaild id
   describe("when the id is invalid", () => {
     it("should with the message: 'Unable to find Movie", () => {
       request(api)
