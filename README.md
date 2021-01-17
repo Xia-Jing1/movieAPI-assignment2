@@ -60,6 +60,7 @@ Give an overview of your web API design, perhaps similar to the following:
 | /api/movies                   | Gets a list of movies              | add new movie            | N/A  | N/A    |
 | /api/movies/{movieid}         | Get a movie                        | N/A                      | N/A  | N/A    |
 | /api/movies/{movieid}/reviews | Get all reviews for a movie        | N/A                      | N/A  | N/A    |
+| /api/movies/{movieid}/similar | Get all similar movies for a movie        | N/A                      | N/A  | N/A    |
 | /api/actors                   | Get actor list                     | N/A                      | N/A  | N/A    |
 | /api/actors/{actorid}         | Get a actor                        | N/A                      | N/A  | N/A    |
 | /api/latest                   | Get latest movie list              | N/A                      | N/A  | N/A    |
@@ -68,9 +69,11 @@ Give an overview of your web API design, perhaps similar to the following:
 | /api/nowplaying               | Get nowplaying movie list          | add new nowplaying movie | N/A  | N/A    |
 | /api/nowplaying/{movieid}         | Get a nowplaying movie                 | N/A                    | N/A  | N/A    |
 | /api/nowplaying/{movieid}/reviews | Get all reviews for a nowplaying movie | N/A                    | N/A  | N/A    |
+| /api/nowplaying/{movieid}/similar | Get all similar movie for a nowplaying movie | N/A                    | N/A  | N/A    |
 | /api/popular                      | Get popular movie list                 | add new popular movie  | N/A  | N/A    |
 | /api/popular/{movieid}            | Get a popular movie                    | N/A                    | N/A  | N/A    |
 | /api/popular/{movieid}/reviews    | Get all reviews for a popular movie    | N/A                    | N/A  | N/A    |
+| /api/popular/{movieid}/similar    | Get all similar movies for a popular movie    | N/A                    | N/A  | N/A    |
 | /api/toprated                     | Get toprated movie list                | add new toprated movie | N/A  | N/A    |
 | /api/toprated/{movieid}           | Get a toprated movie                   | N/A                    | N/A  | N/A    |
 | /api/toprated/{movieid}/reviews   | Get all reviews for a toprated movie   | N/A                    | N/A  | N/A    |

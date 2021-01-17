@@ -22,13 +22,13 @@ router.get('/:id/reviews', (req, res, next) => {
   .catch((error) => next(error));
 });
 
-router.get('/:id/similar', (req, res, next) => {
+router.get('/:id/similar', async (req, res, next) => {
+  if (isNaN(req.params.id)) return res.status(403).json({ code: 403, msg: 'Invaild movie id.' });
   const id = parseInt(req.params.id);
-  getMovieSimilar(id)
-  .then(similarMovies => res.status(200).send(similarMovies))
-  .catch((error)=> next(error));
+  const movies = await getMovieSimilar(id);
+  if (movies == "") return res.status(404).json({ code: 404, msg: 'No similar movies of this movie.' });
+  res.status(200).json(movies);
 });
-
 
 router.get('/:id/credits', (req, res, next) => {
   const id = parseInt(req.params.id);

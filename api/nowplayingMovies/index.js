@@ -1,7 +1,7 @@
 import nowplayingModel from './nowplayingModel';
 import express from 'express';
 import {
-  getMovieReviews,getMovie
+  getMovieReviews,getMovie, getMovieSimilar
 } from '../tmdb-api';
 
 const router = express.Router();
@@ -20,6 +20,14 @@ router.get('/:id/reviews', (req, res, next) => {
   getMovieReviews(id)
   .then(reviews => res.status(200).send(reviews))
   .catch((error) => next(error));
+});
+
+router.get('/:id/similar', async (req, res, next) => {
+  if (isNaN(req.params.id)) return res.status(403).json({ code: 403, msg: 'Invaild movie id.' });
+  const id = parseInt(req.params.id);
+  const movies = await getMovieSimilar(id);
+  if (movies == "") return res.status(404).json({ code: 404, msg: 'No similar movies of this movie.' });
+  res.status(200).json(movies);
 });
 
 router.post('/', (req, res) => {
