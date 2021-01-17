@@ -95,7 +95,7 @@ Give details of authentication/ security implemented on the API(e.g. passport/se
 
 ![截屏2021-01-17 上午1.52.40](https://tva1.sinaimg.cn/large/008eGmZEgy1gmqggylcifj311c066tca.jpg)
 
-![截屏2021-01-17 上午1.57.56](/Users/xia/Desktop/截屏2021-01-17 上午1.57.56.png)
+![截屏2021-01-17 上午1.57.56](https://tva1.sinaimg.cn/large/008eGmZEgy1gmqvitwjvdj30sk068whe.jpg)
 
 Only users stored in the database can log in by entering the correct user name and password. New users can log in by registering successfully and entering the correct information. Visitors who do not log in cannot view these protected pages.
 
