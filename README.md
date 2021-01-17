@@ -46,9 +46,9 @@ REMEMBER: DON'T PUT YOUR OWN USERNAMES/PASSWORDS/AUTH KEYS IN THE README OR ON G
 NODE_ENV=development
 PORT=8080
 HOST=localhost
-mongoDB=mongodb+srv
+mongoDB=mongodb+srv://admin:<password>@cluster0.vpowa.mongodb.net/<database>?retryWrites=true&w=majority
 seedDB=true
-secret=myJWTSecret
+secret=ilikecake
 ```
 
 
@@ -66,9 +66,6 @@ Give an overview of your web API design, perhaps similar to the following:
 | /api/latest/{movieid}         | Get a latest movie                 | N/A                      | N/A  | N/A    |
 | /api/latest/{movieid}/reviews | Get all reviews for a latest movie | N/A                      | N/A  | N/A    |
 | /api/nowplaying               | Get nowplaying movie list          | add new nowplaying movie | N/A  | N/A    |
-
-|                                   | GET                                    | POST                   | PUT  | DELETE |
-| --------------------------------- | -------------------------------------- | ---------------------- | ---- | ------ |
 | /api/nowplaying/{movieid}         | Get a nowplaying movie                 | N/A                    | N/A  | N/A    |
 | /api/nowplaying/{movieid}/reviews | Get all reviews for a nowplaying movie | N/A                    | N/A  | N/A    |
 | /api/popular                      | Get popular movie list                 | add new popular movie  | N/A  | N/A    |
@@ -78,14 +75,14 @@ Give an overview of your web API design, perhaps similar to the following:
 | /api/toprated/{movieid}           | Get a toprated movie                   | N/A                    | N/A  | N/A    |
 | /api/toprated/{movieid}/reviews   | Get all reviews for a toprated movie   | N/A                    | N/A  | N/A    |
 | /api/upcoming                     | Get upcoming movie list                | add new upcoming movie | N/A  | N/A    |
-
-|                                  | GET                                  | POST                             | PUT           | DELETE                              |
-| -------------------------------- | ------------------------------------ | -------------------------------- | ------------- | ----------------------------------- |
 | /api/upcoming/{movieid}          | Get a upcoming movie                 | N/A                              | N/A           | N/A                                 |
 | /api/upcoming/{movieid}/reviews  | Get all reviews for a upcoming movie | N/A                              | N/A           | N/A                                 |
 | /api/users                       | Get all users                        | register or authenticate a user  | N/A           | N/A                                 |
 | /api/users/{userName}/favourites | Get favourite movies for a user      | add a favourite movie for a user | N/A           | delete a favourite movie for a user |
 | /api/users/{userid}              | N/A                                  | N/A                              | update a user | N/A                                 |
+
+
+
 
 If you have your API design on an online platform or graphic, please link to it (e.g. [Swaggerhub](https://app.swaggerhub.com/)).
 
@@ -96,6 +93,8 @@ Give details of authentication/ security implemented on the API(e.g. passport/se
 ![截屏2021-01-17 上午1.52.40](https://tva1.sinaimg.cn/large/008eGmZEgy1gmqggylcifj311c066tca.jpg)
 
 ![截屏2021-01-17 上午1.57.56](https://tva1.sinaimg.cn/large/008eGmZEgy1gmqvitwjvdj30sk068whe.jpg)
+
+I use the same Authentication as labs.
 
 Only users stored in the database can log in by entering the correct user name and password. New users can log in by registering successfully and entering the correct information. Visitors who do not log in cannot view these protected pages.
 
@@ -209,7 +208,9 @@ export const signup = (username, password) => {
 
 ## Extra features
 
-. . Briefly explain any non-standard features, functional or non-functional, developed for the app.  
+Feature 1 - Dynamic and interactive UI.  
+
+Feature 2 - Integrated with the React app, added login interface, extensive and dynamic links.
 
 ## Independent learning.
 
